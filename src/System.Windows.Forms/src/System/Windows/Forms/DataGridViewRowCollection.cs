@@ -55,7 +55,7 @@ namespace System.Windows.Forms
 
         int IList.IndexOf(object value)
         {
-            return items.IndexOf(value);
+            return ((IList)items).IndexOf(value);
         }
 
         void IList.Insert(int index, object value)
@@ -105,7 +105,7 @@ namespace System.Windows.Forms
 
         void ICollection.CopyTo(Array array, int index)
         {
-            items.CopyTo(array, index);
+            ((ICollection)items).CopyTo(array, index);
         }
 
         int ICollection.Count
