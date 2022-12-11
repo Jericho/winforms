@@ -2484,13 +2484,9 @@ namespace System.Windows.Forms
                 }
             }
 
-            DataGridViewRow item = items[rowIndex1];
-            items[rowIndex1] = items[rowIndex2];
-            items[rowIndex2] = item;
+            (items[rowIndex2], items[rowIndex1]) = (items[rowIndex1], items[rowIndex2]);
 
-            DataGridViewElementStates rowStates = this.rowStates[rowIndex1];
-            this.rowStates[rowIndex1] = this.rowStates[rowIndex2];
-            this.rowStates[rowIndex2] = rowStates;
+            (rowStates[rowIndex2], rowStates[rowIndex1]) = (rowStates[rowIndex1], rowStates[rowIndex2]);
         }
 
         // This function only adjusts the row's RowIndex and State properties - no more.
