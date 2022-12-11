@@ -11,7 +11,7 @@ namespace System.Windows.Forms
 {
     public partial class DataGridViewRowCollection
     {
-        private class RowArrayList : ArrayList
+        private class RowArrayList : List<DataGridViewRow>
         {
             private readonly DataGridViewRowCollection owner;
             private RowComparer rowComparer;

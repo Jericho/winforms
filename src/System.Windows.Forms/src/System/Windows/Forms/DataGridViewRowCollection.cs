@@ -176,17 +176,11 @@ namespace System.Windows.Forms
                     DataGridViewRow dataGridViewRow = this[rowIndex];
                 }
 
-                return items;
+                return ArrayList.Adapter(items);
             }
         }
 
-        internal ArrayList SharedList
-        {
-            get
-            {
-                return items;
-            }
-        }
+        internal ArrayList SharedList => ArrayList.Adapter(items);
 
         public DataGridViewRow SharedRow(int rowIndex)
         {
@@ -865,7 +859,7 @@ namespace System.Windows.Forms
             {
                 if (DataGridView.DataConnection.List is IBindingList list && list.AllowRemove && list.SupportsChangeNotification)
                 {
-                    ((IList)list).Clear();
+                    list.Clear();
                 }
                 else
                 {
@@ -1351,7 +1345,7 @@ namespace System.Windows.Forms
             {
                 if ((GetRowState(rowIndex) & includeFilter) == includeFilter)
                 {
-                    rowsHeight += ((DataGridViewRow)items[rowIndex]).GetHeight(rowIndex);
+                    rowsHeight += items[rowIndex].GetHeight(rowIndex);
                 }
             }
 
@@ -1379,7 +1373,7 @@ namespace System.Windows.Forms
             {
                 if ((GetRowState(rowIndex) & includeFilter) == includeFilter)
                 {
-                    rowsHeight += ((DataGridViewRow)items[rowIndex]).GetHeight(rowIndex);
+                    rowsHeight += items[rowIndex].GetHeight(rowIndex);
                 }
             }
 
@@ -1397,7 +1391,7 @@ namespace System.Windows.Forms
             {
                 if ((GetRowState(rowIndex) & includeFilter) == includeFilter)
                 {
-                    rowsHeight += ((DataGridViewRow)items[rowIndex]).GetHeight(rowIndex);
+                    rowsHeight += items[rowIndex].GetHeight(rowIndex);
                     if (rowsHeight > heightLimit)
                     {
                         return true;
@@ -2273,7 +2267,7 @@ namespace System.Windows.Forms
             {
                 if (DataGridView.DataConnection.List is IBindingList list && list.AllowRemove && list.SupportsChangeNotification)
                 {
-                    ((IList)list).RemoveAt(index);
+                    list.RemoveAt(index);
                 }
                 else
                 {
@@ -2490,7 +2484,7 @@ namespace System.Windows.Forms
                 }
             }
 
-            object item = items[rowIndex1];
+            DataGridViewRow item = items[rowIndex1];
             items[rowIndex1] = items[rowIndex2];
             items[rowIndex2] = item;
 
